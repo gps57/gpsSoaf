@@ -83,7 +83,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Docs\Coding-Challenge-TacoCat.pdf" />
+    <Content Include="Docs\Coding-Challenge-Sum-of-all-Fears.pdf" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
