@@ -10,6 +10,15 @@
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <style>
+    hr.Sep {
+      height: 10px;
+      background-color: black;
+      margin-bottom: 3em;
+    }
+  </style>
+
 </head>
   <body>
 
@@ -52,16 +61,24 @@
               <!-- ================ Solution starts here ================== -->
               <section>
                 <form>
-                  <div class="form-group row">
-                    <label for="listOfNumbers" class="col-lg-2 col-form-label">List of Numbers:</label>
-                    <div class="col-lg-10">
-                      <input type="text" class="form-control" id="numListInput" placeholder="positive whole numbers comma separated">
+                  <div class="row">
+                    <div class="col-12">
+                      <p>Enter a series of positive whole numbers comma seperated.</p>
                     </div>
                   </div>
-                  <div class="form-group row">
-                    <label for="kNum" class="col-lg-2 col-form-label">K Number</label>
-                    <div class="col-lg-10">
-                      <input type="text" class="form-control" id="kNumber" placeholder="Enter a single whole number">
+                  <div class="form-group row mb-5">
+                      <label for="listOfNumbers" class="col-lg-2 col-form-label font-weight-bold">List of Numbers:</label>
+                      <div class="col-lg-10">
+                        <input type="text" class="form-control" id="numListInput" value="10,15,3,7">
+                      </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-12"><p>Enter a single positive whole number.</p></div>
+                  </div>
+                  <div class="form-group row mb-5">
+                    <label for="kNum" class="col-lg-2 col-form-label font-weight-bold">K Number:</label>
+                    <div class="col-lg-2">
+                      <input type="text" class="form-control" id="kNumber" placeholder="whole number">
                     </div>
                   </div>
                   <div class="form-group row">
@@ -75,6 +92,8 @@
                   </div>
                 </form>
               </section>
+              <hr class="Sep" />
+
 
             </div> <!-- end card body -->
           </div> <!-- end card div -->
@@ -89,5 +108,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="../js/sh-script.js"></script>
+
+    <script>
+      $("#doSoafBtn").on("click", function () {
+        let numListField = document.getElementById("")
+      });
+
+
+
+    </script>
   </body>
 </html>
