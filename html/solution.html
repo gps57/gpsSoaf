@@ -93,6 +93,9 @@
                 </form>
               </section>
               <hr class="Sep" />
+              <section>
+                <div id="outArea" class="mb-3"></div>
+              </section>
 
 
             </div> <!-- end card body -->
@@ -107,14 +110,65 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <script src="../js/sh-script.js"></script>
 
     <script>
       $("#doSoafBtn").on("click", function () {
-        let numListField = document.getElementById("")
+        let numListField = document.getElementById("numListInput");
+        let inputStr = numListField.value;
+        let kNum = parseInt($("#kNumber").val());
+        let firstNum = 0;
+        let secondNum = 0;
+        let numOfSolutions = 0;
+        let outMsg = "";
+
+        if (isNaN(kNum)) {
+          let outArea = document.getElementById("outArea");
+          outArea.classList.add("text-danger", "font-weight-bold");
+          outArea.innerHTML = "Error - You must enter a K number."
+          return;
+        }
+
+        // remove all letters, white spaces, and special characters from string. Leave behind numbers and the comma.
+        // This isn't totally right yet.  The letters are still there.
+        numListStr = inputStr.replace(/[^0-9/,]/g, '');
+        alert(numListStr);
+
+        // now convert the string of numbers to an array of numbers
+        let numListArray = numListStr.split(',').map(Number);
+
+        for (let i = 0; i < numListArray.length - 1; i++) {
+          firstNum = numListArray[i];
+          if (firstNum > kNum)
+            continue;
+
+          let diff = kNum - firstNum;
+          secondNum = numListArray.indexOf(diff, i + 1);
+          if (secondNum > -1) {
+            // a solution was found
+            numOfSolutions++;
+            outMsg += `${firstNum} + ${secondNum} = ${kNum}, is a solution found in this list of numbers.<br />`;
+          }
+        }
+
+        let frontMsg = "";
+        if (!numOfSolutions) {
+          outMsg = `<span class='text-danger font-weight-bold'>No solution</span> for a K value of ${kNum} was found.`;
+        } else {
+          if (numOfSolutions == 1) {
+            frontMsg = `<span class='text-success font-weight-bold'>${numOfSolutions} solution was found</span> for a K value of ${kNum}.<br />`
+          } else {
+            frontMsg = `<span class='text-success font-weight-bold'>${numOfSolutions} solutions were found</span> for a K value of ${kNum}.<br />`
+          }
+        }
+
+        let outArea = document.getElementById("outArea");
+        // just in case any classes are left over from a pervious error condition
+        outArea.classList.remove("text-danger", "font-weight-bold");
+        
+        let str = frontMsg.concat(outMsg);
+        outArea.innerHTML = str;
+        
       });
-
-
 
     </script>
   </body>
