@@ -73,7 +73,7 @@
                       </div>
                   </div>
                   <div class="row">
-                    <div class="col-12"><p>Enter a single positive whole number.</p></div>
+                    <div class="col-12"><p>Enter a single positive whole number within the range 1 to 100.</p></div>
                   </div>
                   <div class="form-group row mb-5">
                     <label for="kNum" class="col-lg-2 col-form-label font-weight-bold">K Number:</label>
@@ -128,10 +128,15 @@
           return;
         }
 
+        if (kNum > 100) {
+          let outArea = document.getElementById("outArea");
+          outArea.classList.add("text-danger", "font-weight-bold");
+          outArea.innerHTML = "Error - The range of acceptable values for the K number is from 1 to 100."
+          return;
+        }
+
         // remove all letters, white spaces, and special characters from string. Leave behind numbers and the comma.
-        // This isn't totally right yet.  The letters are still there.
         numListStr = inputStr.replace(/[^0-9/,]/g, '');
-        alert(numListStr);
 
         // now convert the string of numbers to an array of numbers
         let numListArray = numListStr.split(',').map(Number);
@@ -141,9 +146,10 @@
           if (firstNum > kNum)
             continue;
 
-          let diff = kNum - firstNum;
-          secondNum = numListArray.indexOf(diff, i + 1);
-          if (secondNum > -1) {
+          let secondNum = kNum - firstNum;
+          console.log("firstNum is: " + firstNum);
+          console.log("secondNum is: " + secondNum);
+          if (numListArray.indexOf(secondNum, i + 1) > -1) {
             // a solution was found
             numOfSolutions++;
             outMsg += `${firstNum} + ${secondNum} = ${kNum}, is a solution found in this list of numbers.<br />`;
